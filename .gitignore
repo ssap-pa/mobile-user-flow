@@ -1,0 +1,16 @@
+# Local configuration and generated research artifacts
+.env
+.env.*
+*.pem
+*.key
+.codex/
+work/
+outputs/
+screens/
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.zip
+.DS_Store
+Thumbs.db

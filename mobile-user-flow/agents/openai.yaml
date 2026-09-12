@@ -1,0 +1,6 @@
+interface:
+  display_name: "모바일 유저 플로우 설계"
+  short_description: "토스 동선에서 추출한 원칙으로 업종별 모바일 앱웹 설계·구현"
+  default_prompt: "$mobile-user-flow를 사용해 만들려는 모바일 앱웹의 핵심 동선과 화면을 설계하고 요청 범위에 맞게 구현해줘."
+policy:
+  allow_implicit_invocation: true
