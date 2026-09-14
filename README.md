@@ -1,6 +1,6 @@
 # Mobile User Flow
 
-토스 Android 앱에서 관찰한 사용자 동선 패턴을 다양한 업종의 모바일 앱·모바일 웹 설계에 적용하는 Codex 스킬입니다.
+토스 Android 앱에서 관찰한 사용자 동선 패턴을 다양한 업종의 모바일 앱·모바일 웹 설계에 적용하는 스킬입니다. Claude Code와 Codex에서 같은 스킬 폴더를 그대로 사용합니다.
 
 ## 무엇을 하나요?
 
@@ -14,25 +14,59 @@
 
 ## 설치
 
-1. 이 저장소의 **Code → Download ZIP**을 선택하거나 아래 명령으로 내려받습니다.
+저장소를 내려받습니다.
 
-   ```sh
-   git clone https://github.com/ssap-pa/mobile-user-flow.git
-   ```
+```sh
+git clone https://github.com/ssap-pa/mobile-user-flow.git
+```
 
-2. 저장소 안의 `mobile-user-flow` 폴더를 Codex 개인 스킬 폴더에 복사합니다. 기본 위치는 `~/.codex/skills/`이며, `CODEX_HOME`을 별도로 설정했다면 그 아래의 `skills/`를 사용합니다. 같은 이름의 스킬이 이미 있다면 기존 내용을 먼저 비교하세요.
+### Claude Code
 
-3. 최종 구조가 `skills/mobile-user-flow/SKILL.md`인지 확인합니다. Codex에서 새 대화를 열어 아래처럼 요청합니다.
+저장소 안의 `mobile-user-flow` 폴더를 스킬 디렉터리에 복사합니다.
 
-   ```text
-   $mobile-user-flow로 예약 앱의 전체 동선과 화면을 설계해줘.
-   ```
+- 모든 프로젝트에서 쓰려면 개인 스킬로 설치합니다.
 
-추가 예시:
+  ```sh
+  mkdir -p ~/.claude/skills
+  cp -R mobile-user-flow/mobile-user-flow ~/.claude/skills/mobile-user-flow
+  ```
+
+- 특정 저장소에서만 쓰고 팀과 공유하려면 프로젝트 스킬로 설치합니다.
+
+  ```sh
+  mkdir -p <프로젝트>/.claude/skills
+  cp -R mobile-user-flow/mobile-user-flow <프로젝트>/.claude/skills/mobile-user-flow
+  ```
+
+최종 구조가 `skills/mobile-user-flow/SKILL.md`인지 확인한 뒤 Claude Code를 다시 시작합니다. `/mobile-user-flow`로 직접 호출하거나, 아래처럼 요청하면 SKILL.md의 `description`에 따라 자동으로 사용됩니다.
 
 ```text
-$mobile-user-flow로 교육 앱의 이어 학습과 학습 완료 후 동선을 설계해줘.
-$mobile-user-flow로 현재 프로젝트의 검색 → 목록 → 상세 → 신청 흐름을 개선하고 구현해줘.
+/mobile-user-flow 예약 앱의 전체 동선과 화면을 설계해줘.
+예약 앱의 사용자 동선과 화면 구성을 설계해줘.
+```
+
+`agents/openai.yaml`은 Codex 전용 파일이며 Claude Code는 읽지 않습니다. 함께 복사해도 동작에 영향이 없습니다.
+
+### Codex
+
+저장소 안의 `mobile-user-flow` 폴더를 Codex 개인 스킬 폴더에 복사합니다. 기본 위치는 `~/.codex/skills/`이며, `CODEX_HOME`을 별도로 설정했다면 그 아래의 `skills/`를 사용합니다. 같은 이름의 스킬이 이미 있다면 기존 내용을 먼저 비교하세요.
+
+```sh
+mkdir -p ~/.codex/skills
+cp -R mobile-user-flow/mobile-user-flow ~/.codex/skills/mobile-user-flow
+```
+
+최종 구조가 `skills/mobile-user-flow/SKILL.md`인지 확인합니다. Codex에서 새 대화를 열어 아래처럼 요청합니다.
+
+```text
+$mobile-user-flow로 예약 앱의 전체 동선과 화면을 설계해줘.
+```
+
+### 공통 예시
+
+```text
+교육 앱의 이어 학습과 학습 완료 후 동선을 설계해줘.
+현재 프로젝트의 검색 → 목록 → 상세 → 신청 흐름을 개선하고 구현해줘.
 ```
 
 ## 구성
@@ -43,7 +77,7 @@ $mobile-user-flow로 현재 프로젝트의 검색 → 목록 → 상세 → 신
 | [patterns.md](mobile-user-flow/references/patterns.md) | 패턴 선택표와 업종별 예시 |
 | [flow-spec.md](mobile-user-flow/references/flow-spec.md) | 화면·전이·검증 명세 형식 |
 | [toss-observations.md](mobile-user-flow/references/toss-observations.md) | 관찰한 토스 경로와 미확인 범위 |
-| [openai.yaml](mobile-user-flow/agents/openai.yaml) | Codex 표시 정보와 호출 설정 |
+| [openai.yaml](mobile-user-flow/agents/openai.yaml) | Codex 표시 정보와 호출 설정 (Codex 전용) |
 
 ## 자료 범위
 
@@ -51,7 +85,7 @@ $mobile-user-flow로 현재 프로젝트의 검색 → 목록 → 상세 → 신
 
 배포 자료에는 원본 화면 캡처, 대화 기록, 개인 프로필, 계좌·거래 값, 연락처·주소, 기기 식별자, 로컬 사용자 경로, 인증 정보를 포함하지 않습니다. 문서에는 화면 구조와 일반화한 설계 지침만 담았습니다.
 
-토스 및 OpenAI의 공식 배포물이 아니며 제휴 관계를 나타내지 않습니다. 상표와 서비스 이름은 관찰 대상을 설명하기 위해 사용합니다.
+토스, OpenAI, Anthropic의 공식 배포물이 아니며 제휴 관계를 나타내지 않습니다. 상표와 서비스 이름은 관찰 대상을 설명하기 위해 사용합니다.
 
 ## 라이선스
 
